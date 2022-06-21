@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block form %}
+<div>
+    <h1>Create a New Project</h1>
+    <form method="post">
+        {% csrf_token %}
+        Name: <input type="text" name="name"><br><br>
+        Description: <textarea type="text" name="description"></textarea><br><br>
+        Members: <select name='members' id="members"></select><br><br>
+        <button>Create</button>
+    </form>
+</div>
+{% endblock form %}
