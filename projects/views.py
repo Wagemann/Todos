@@ -1,5 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy, reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
@@ -30,8 +32,5 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
     template_name = "projects/create.html"
     fields = ["name", "description", "members"]
 
-    def form_valid(self, form):
-        item = form.save(commit=False)
-        item.members = self.request.user
-        item.save()
-        return redirect("create_project")
+    def get_success_url(self):
+        return reverse_lazy("show_project", kwargs={"pk": self.object.pk})

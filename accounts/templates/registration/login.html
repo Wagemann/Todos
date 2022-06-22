@@ -5,8 +5,7 @@
     <h1>Login</h1>
     <form method="post">
         {% csrf_token %}
-        Username: <input type="text" name="username"><br><br>
-        Password: <input type="password" name="password">
+        {{ form.as_p }}
         <button>Login</button>
     </form>
 </div>

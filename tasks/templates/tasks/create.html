@@ -4,11 +4,8 @@
 <div>
     <h1>Create a new task</h1>
     <form method="post">
-        Name: <input type="text" name="name"><br><br>
-        Start Date: <input type="text" name="start_date"><br><br>
-        Due Date: <input type="text" name="due_date"><br><br>
-        Project: <select name="projects"></select><br><br>
-        Assignee: <select name="assignee"></select><br><br>
+        {% csrf_token %}
+        {{ form.as_p }}
         <button>Create</button>
     </form>
 </div>
