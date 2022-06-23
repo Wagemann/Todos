@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block form %}
-<div>
-    <h1>Create a New Project</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>Create</button>
-    </form>
-</div>
+    <div>
+        <h1>Create a New Project</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Create</button>
+        </form>
+    </div>
 {% endblock form %}

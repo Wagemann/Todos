@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect
-from tasks.models import Task
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from tasks.models import Task
 
 # Create your views here.
 
@@ -13,11 +12,8 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     template_name = "tasks/create.html"
     fields = ["name", "start_date", "due_date", "project", "assignee"]
 
-    def form_valid(self, form):
-        item = form.save(commit=False)
-        item.assignee = self.request.user
-        item.save()
-        return redirect("create_task")
+    def get_success_url(self):
+        return reverse_lazy("show_my_tasks")
 
 
 class TaskListView(LoginRequiredMixin, ListView):
